@@ -6,93 +6,149 @@
 <title>vzexiOS</title>
 <style>
     /* General Styling */
-    body {
-        background-color: #1a1a1a;
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background-color: #000;
         color: #fff;
-        font-family: 'Courier New', monospace;
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
-        margin: 0;
-    }
-    #welcome-section, #main-content {
-        text-align: center;
+        font-family: 'Courier New', monospace;
     }
 
-    /* Typewriter Effect */
-    .typewriter-text {
-        font-size: 2em;
-        font-weight: bold;
-        background: linear-gradient(90deg, #ff7a18, #af002d 70%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        display: inline-block;
-        animation: typewriter 3s steps(30) 1s 1 normal both, blinkTextCursor 500ms steps(30) infinite normal;
-    }
-
-    /* Boot Manager Style */
-    #boot-manager {
-        color: #0f0; /* Green text */
-        font-size: 1.2em;
-        margin-top: 20px;
-        display: none;
-    }
-
-    /* Loading Screen */
+    /* Loading Screen Styling */
     #loading-screen {
-        font-size: 1.1em;
+        text-align: center;
         background-color: #000;
-        padding: 20px;
-        border-radius: 8px;
+        color: #fff;
+        font-size: 1.2em;
+    }
+    .loading-text {
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 2px solid;
+        animation: typewriter 3s steps(30) forwards, blinkTextCursor 0.5s steps(30) infinite;
+    }
+    .green-text {
         color: #0f0;
     }
 
-    /* Animations */
+    /* Typewriter and Cursor Animation */
     @keyframes typewriter {
         from { width: 0; }
         to { width: 100%; }
     }
     @keyframes blinkTextCursor {
-        from { border-right: 2px solid rgba(255, 255, 255, 0.75); }
-        to { border-right: transparent; }
+        from { border-right-color: rgba(255, 255, 255, 0.75); }
+        to { border-right-color: transparent; }
+    }
+
+    /* Main Content Styling */
+    #main-content {
+        display: none;
+        text-align: center;
+        padding: 20px;
+    }
+    .rainbow-text {
+        font-size: 2em;
+        font-weight: bold;
+        animation: rainbowCycle 3s linear infinite;
+    }
+    @keyframes rainbowCycle {
+        0% { color: #ff0000; }
+        20% { color: #ff8000; }
+        40% { color: #ffff00; }
+        60% { color: #00ff00; }
+        80% { color: #0000ff; }
+        100% { color: #ff00ff; }
+    }
+
+    /* Project List Styling */
+    .project-list {
+        background-color: #1a1a1a;
+        color: #fff;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 20px;
+    }
+    .project {
+        font-size: 1.2em;
+        margin: 5px 0;
+        background: linear-gradient(90deg, #ff007f, #7f00ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradientShift 3s linear infinite alternate;
+    }
+    @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        100% { background-position: 100% 50%; }
     }
 </style>
 </head>
 <body>
 
-<div id="welcome-section">
-    <!-- Typewriter Gradient Text -->
-    <span class="typewriter-text">Welcome to [vzexi’s Castle]</span>
-
-    <!-- Boot Manager Simulation -->
-    <div id="loading-screen">
-        <p>vzexiOS Booting...</p>
-        <p>Loading modules...</p>
-        <p>Checking configuration...</p>
-        <p>All systems online.</p>
-        <p><span id="loaded-text" style="color: #0f0;">vzexiOS Loaded. Click to Enter!</span></p>
-    </div>
+<!-- Loading Screen -->
+<div id="loading-screen">
+    <span class="loading-text" style="animation-delay: 0s;">vzexiOS Booting...</span>
+    <span class="loading-text" style="animation-delay: 3s;">Loading modules...</span>
+    <span class="loading-text" style="animation-delay: 6s;">Checking configuration...</span>
+    <span class="loading-text green-text" style="animation-delay: 9s;">vzexiOS Loaded. Click to Enter!</span>
 </div>
 
 <!-- Main Content -->
-<div id="main-content" style="display:none;">
-    <h1>@vzexi</h1>
-    <p>vzexi</p>
-    <!-- Add your main content here -->
+<div id="main-content">
+    <!-- Rainbow-cycling username -->
+    <div>
+        <span class="rainbow-text">@vzexi</span>
+    </div>
+
+    <!-- Typewriter descriptions -->
+    <div id="description-box" style="margin-top: 10px; font-size: 1.5em;"></div>
+
+    <!-- Project List -->
+    <div class="project-list">
+        <div class="project">[Owner] @ Vast Creations</div>
+        <div class="project">[Owner] @ Remedy Softworks</div>
+        <div class="project">[Co-Owner] @ Demonity.cc</div>
+        <div class="project">[Co-Owner] @ ScriptGuard</div>
+    </div>
 </div>
 
 <script>
-    // Show Boot Manager Text after Typewriter
-    setTimeout(() => {
-        document.getElementById("loading-screen").style.display = "block";
-    }, 3000);
-
-    // Click to enter main content
+    // Display main content on click
     document.getElementById("loading-screen").addEventListener("click", function() {
-        document.getElementById("welcome-section").style.display = "none";
+        document.getElementById("loading-screen").style.display = "none";
         document.getElementById("main-content").style.display = "block";
+        typeDescriptions();
     });
+
+    // Typewriter effect for descriptions
+    const descriptions = ["Description1", "Description2", "Description3"];
+    let descIndex = 0;
+    
+    function typeDescriptions() {
+        if (descIndex >= descriptions.length) {
+            descIndex = 0; // Reset for a looped effect
+        }
+        let text = descriptions[descIndex];
+        let i = 0;
+        document.getElementById("description-box").innerHTML = ""; // Clear previous text
+        
+        function typeWriter() {
+            if (i < text.length) {
+                document.getElementById("description-box").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            } else {
+                descIndex++;
+                setTimeout(typeDescriptions, 2000); // Pause before the next description
+            }
+        }
+        typeWriter();
+    }
 </script>
 
 </body>
