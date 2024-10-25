@@ -26,10 +26,10 @@
         font-size: 1.2em;
     }
     .loading-text {
-        display: block;
         white-space: nowrap;
         overflow: hidden;
         border-right: 2px solid;
+        display: none;
         animation: typewriter 3s steps(30) forwards, blinkTextCursor 0.5s steps(30) infinite;
     }
     .green-text {
@@ -74,9 +74,8 @@
         border-radius: 8px;
         margin-top: 20px;
     }
-    .project {
-        font-size: 1.2em;
-        margin: 5px 0;
+    .project .rank {
+        display: inline-block;
         background: linear-gradient(90deg, #ff007f, #7f00ff);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -92,10 +91,10 @@
 
 <!-- Loading Screen -->
 <div id="loading-screen">
-    <span class="loading-text" style="animation-delay: 0s;">vzexiOS Booting...</span>
-    <span class="loading-text" style="animation-delay: 3s;">Loading modules...</span>
-    <span class="loading-text" style="animation-delay: 6s;">Checking configuration...</span>
-    <span class="loading-text green-text" style="animation-delay: 9s;">vzexiOS Loaded. Click to Enter!</span>
+    <span id="booting" class="loading-text">vzexiOS Booting...</span>
+    <span id="modules" class="loading-text" style="animation-delay: 3s;">Loading modules...</span>
+    <span id="config" class="loading-text" style="animation-delay: 6s;">Checking configuration...</span>
+    <span id="loaded" class="loading-text green-text" style="animation-delay: 9s;">vzexiOS Loaded. Click to Enter!</span>
 </div>
 
 <!-- Main Content -->
@@ -110,45 +109,62 @@
 
     <!-- Project List -->
     <div class="project-list">
-        <div class="project">[Owner] @ Vast Creations</div>
-        <div class="project">[Owner] @ Remedy Softworks</div>
-        <div class="project">[Co-Owner] @ Demonity.cc</div>
-        <div class="project">[Co-Owner] @ ScriptGuard</div>
+        <div class="project"><span class="rank">[Owner]</span> @ Vast Creations</div>
+        <div class="project"><span class="rank">[Owner]</span> @ Remedy Softworks</div>
+        <div class="project"><span class="rank">[Co-Owner]</span> @ Demonity.cc</div>
+        <div class="project"><span class="rank">[Co-Owner]</span> @ ScriptGuard</div>
     </div>
 </div>
 
-<script>
-    // Display main content on click
-    document.getElementById("loading-screen").addEventListener("click", function() {
-        document.getElementById("loading-screen").style.display = "none";
-        document.getElementById("main-content").style.display = "block";
-        typeDescriptions();
-    });
+<!-- Hidden YouTube Audio -->
+<div id="audio-container" style="display: none;"></div>
 
-    // Typewriter effect for descriptions
-    const descriptions = ["Description1", "Description2", "Description3"];
-    let descIndex = 0;
-    
-    function typeDescriptions() {
-        if (descIndex >= descriptions.length) {
-            descIndex = 0; // Reset for a looped effect
-        }
-        let text = descriptions[descIndex];
-        let i = 0;
-        document.getElementById("description-box").innerHTML = ""; // Clear previous text
-        
-        function typeWriter() {
-            if (i < text.length) {
-                document.getElementById("description-box").innerHTML += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 100);
-            } else {
-                descIndex++;
-                setTimeout(typeDescriptions, 2000); // Pause before the next description
-            }
-        }
-        typeWriter();
+<script>
+    // Loading screen text reveal with typewriter effect
+    function showLoadingText(id, delay) {
+        setTimeout(() => {
+            document.getElementById(id).style.display = 'inline';
+        }, delay);
     }
+    showLoadingText('booting', 0);
+    showLoadingText('modules', 3000);
+    showLoadingText('config', 6000);
+    showLoadingText('loaded', 9000);
+
+    // Enter main screen and play audio on click
+    document.getElementById('loading-screen').addEventListener('click', () => {
+        document.getElementById('loading-screen').style.display = 'none';
+        document.getElementById('main-content').style.display = 'block';
+
+        // Play YouTube audio in the background
+        const audioContainer = document.getElementById('audio-container');
+        audioContainer.innerHTML = `
+            <iframe width="0" height="0" src="https://www.youtube.com/embed/YOUR_VIDEO_ID?autoplay=1&loop=1&playlist=YOUR_VIDEO_ID" 
+            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        `;
+
+        // Typewriter effect for descriptions
+        const descriptions = ["its all over the screen", "send help", "-70k Robux (Generational Debt)"];
+        const descriptionBox = document.getElementById('description-box');
+        let index = 0;
+        
+        function typeDescription() {
+            descriptionBox.textContent = ''; // Clear previous text
+            let text = descriptions[index];
+            let charIndex = 0;
+            function typeChar() {
+                if (charIndex < text.length) {
+                    descriptionBox.textContent += text[charIndex++];
+                    setTimeout(typeChar, 100);
+                } else {
+                    index = (index + 1) % descriptions.length;
+                    setTimeout(typeDescription, 1500); // Pause before next description
+                }
+            }
+            typeChar();
+        }
+        typeDescription();
+    });
 </script>
 
 </body>
