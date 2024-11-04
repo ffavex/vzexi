@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <link rel="icon" type="image/ico" href="media/STOP.ico">
     <meta charset="UTF-8">
@@ -64,11 +64,34 @@
             height: 30px;
             margin: 0 10px;
         }
+
+        /* Overlay styling */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2; /* Above all other content */
+            font-size: 24px;
+            text-align: center;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
     <!-- Swinging background image -->
-    <img src="IMG_8754.png" alt="Swinging Background" class="swinging-image"> <!-- Path to your image -->
+    <img src="IMG_8754.png" alt="Swinging Background" class="swinging-image"> <!-- Updated image file name -->
+
+    <!-- Overlay with Click-to-Enter -->
+    <div class="overlay" id="overlay">
+        Press anywhere to start
+    </div>
 
     <!-- Bio Link Content -->
     <div class="content-wrapper">
@@ -91,9 +114,10 @@
     <audio id="background-music" src="vzexi.mp3" loop></audio>
 
     <script>
+        // Click-to-enter overlay functionality
         document.getElementById('overlay').addEventListener('click', function() {
             document.getElementById('background-music').play();
-            document.getElementById('overlay').classList.add('hidden');
+            document.getElementById('overlay').classList.add('hidden'); // Hide overlay after clicking
         });
     </script>
 </body>
