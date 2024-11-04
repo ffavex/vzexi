@@ -4,11 +4,18 @@
       "source": "/(.*)",
       "destination": "/webhook/$1",
       "has": [
-        {
-          "type": "host",
-          "value": "webhook.vzexi.lol"
-        }
+        { "type": "host", "value": "webhook.vzexi.lol" }
       ]
+    }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/main.html"
+    },
+    {
+      "src": "/webhook",
+      "dest": "/webhook/index.html"
     }
   ]
 }
