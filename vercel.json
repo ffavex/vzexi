@@ -7,5 +7,11 @@
         { "type": "host", "value": "webhook.vzexi.lol" }
       ]
     }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/index.html"
+    }
   ]
 }
