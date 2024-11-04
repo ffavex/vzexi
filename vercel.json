@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/",
-      "destination": "/webhook/webhook.html",
+      "destination": "webhook.html",
       "has": [
         {
           "type": "host",
