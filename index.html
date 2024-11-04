@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <link rel="icon" type="image/ico" href="media/STOP.ico">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vzexi</title>
+    <title>@vzexi</title>
     <link rel="stylesheet" href="css/styles.css">
     <style>
         body, html {
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background-color: black; /* Background color for the entire page */
+            background-color: black;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -20,15 +20,15 @@
 
         /* Swinging image */
         .swinging-image {
-            position: absolute;
+            position: fixed;
             top: 50%;
             left: 50%;
             width: 200px; /* Adjust size as needed */
             height: auto;
-            transform-origin: top center; /* Swinging effect from the top */
+            transform-origin: top center;
             animation: swing 4s ease-in-out infinite alternate;
-            z-index: 0; /* Keeps the image behind the content */
-            transform: translate(-50%, -50%); /* Centers image */
+            z-index: 0;
+            transform: translate(-50%, -50%);
         }
 
         /* Swinging animation */
@@ -40,7 +40,7 @@
         /* Bio link content */
         .content-wrapper {
             position: relative;
-            z-index: 1; /* Places the content above the swinging image */
+            z-index: 1;
             color: white;
             text-align: center;
         }
@@ -124,4 +124,5 @@
             document.getElementById('overlay').classList.add('hidden'); // Hide overlay after clicking
         });
     </script>
-</body
+</body>
+</html>
