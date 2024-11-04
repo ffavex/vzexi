@@ -1,14 +1,18 @@
 {
-  "rewrites": [
+  "routes": [
     {
-      "source": "/",
-      "has": [{ "type": "host", "value": "vzexi.lol" }],
-      "destination": "/index.html"  // Serve index.html for main domain
+      "src": "/",
+      "has": [
+        { "type": "host", "value": "vzexi.lol" }
+      ],
+      "dest": "/index.html"  // Serve index.html for the main domain
     },
     {
-      "source": "/",
-      "has": [{ "type": "host", "value": "webhook.vzexi.lol" }],
-      "destination": "/webhook/webhook.html"  // Serve webhook.html for subdomain
+      "src": "/",
+      "has": [
+        { "type": "host", "value": "webhook.vzexi.lol" }
+      ],
+      "dest": "/webhook/webhook.html"  // Serve webhook.html for the subdomain
     }
   ]
 }
