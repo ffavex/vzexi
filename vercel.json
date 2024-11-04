@@ -1,15 +1,19 @@
 {
   "routes": [
     {
-      "src": "/webhook",
-      "dest": "/webhook/webhook.html",
-      "headers": {
-        "x-forwarded-host": "webhook.vzexi.lol"
-      }
+      "src": "/",
+      "dest": "/index.html"  // Serve index.html for the main domain
     },
     {
-      "src": "/",
-      "dest": "/index.html"
+      "src": "/webhook",
+      "dest": "/webhook/webhook.html"  // This can be ignored since we want the subdomain
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "webhook.vzexi.lol" }],
+      "destination": "/webhook/webhook.html"  // Serve webhook.html for the subdomain
     }
   ]
 }
