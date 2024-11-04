@@ -1,19 +1,14 @@
 {
-  "routes": [
-    {
-      "src": "/",
-      "dest": "/index.html"  // Serve index.html for the main domain
-    },
-    {
-      "src": "/webhook",
-      "dest": "/webhook/webhook.html"  // This can be ignored since we want the subdomain
-    }
-  ],
   "rewrites": [
     {
       "source": "/",
+      "has": [{ "type": "host", "value": "vzexi.lol" }],
+      "destination": "/index.html"  // Serve index.html for main domain
+    },
+    {
+      "source": "/",
       "has": [{ "type": "host", "value": "webhook.vzexi.lol" }],
-      "destination": "/webhook/webhook.html"  // Serve webhook.html for the subdomain
+      "destination": "/webhook/webhook.html"  // Serve webhook.html for subdomain
     }
   ]
 }
