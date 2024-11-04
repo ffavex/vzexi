@@ -2,17 +2,13 @@
   "rewrites": [
     {
       "source": "/",
+      "destination": "/webhook/webhook.html",
       "has": [
         {
           "type": "host",
           "value": "webhook.vzexi.lol"
         }
-      ],
-      "destination": "/webhook/webhook.html"
-    },
-    {
-      "source": "/",
-      "destination": "/index.html"
+      ]
     }
   ]
 }
