@@ -13,6 +13,27 @@
         { "type": "host", "value": "webhook.vzexi.lol" }
       ],
       "dest": "/webhook/webhook.html"  // Serve webhook.html for the subdomain
+    },
+    {
+      "src": "/webhook",
+      "has": [
+        { "type": "host", "value": "webhook.vzexi.lol" }
+      ],
+      "dest": "/webhook/webhook.html"  // Serve webhook.html for any /webhook requests
+    },
+    {
+      "src": "/webhook.html",
+      "has": [
+        { "type": "host", "value": "webhook.vzexi.lol" }
+      ],
+      "dest": "/webhook/webhook.html"  // Serve webhook.html for direct access to /webhook.html
+    },
+    {
+      "src": "/(.*)",
+      "has": [
+        { "type": "host", "value": "webhook.vzexi.lol" }
+      ],
+      "status": 404  // Return 404 for any other path on the webhook subdomain
     }
   ]
 }
