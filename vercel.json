@@ -1,14 +1,12 @@
 {
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/webhook/webhook.html",
-      "has": [
-        { "type": "host", "value": "webhook.vzexi.lol" }
-      ]
-    }
-  ],
   "routes": [
+    {
+      "src": "/webhook",
+      "dest": "/webhook/webhook.html",
+      "headers": {
+        "x-forwarded-host": "webhook.vzexi.lol"
+      }
+    },
     {
       "src": "/",
       "dest": "/index.html"
