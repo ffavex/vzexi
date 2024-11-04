@@ -5,35 +5,35 @@
       "has": [
         { "type": "host", "value": "vzexi.lol" }
       ],
-      "dest": "/index.html"  // Serve index.html for the main domain
+      "dest": "/index.html"  // Route for the main domain
     },
     {
       "src": "/",
       "has": [
         { "type": "host", "value": "webhook.vzexi.lol" }
       ],
-      "dest": "/webhook/webhook.html"  // Serve webhook.html for the subdomain
+      "dest": "/webhook/webhook.html"  // Route for the subdomain
     },
     {
       "src": "/webhook",
       "has": [
         { "type": "host", "value": "webhook.vzexi.lol" }
       ],
-      "dest": "/webhook/webhook.html"  // Serve webhook.html for any /webhook requests
+      "dest": "/webhook/webhook.html"  // Also route /webhook to webhook.html
     },
     {
       "src": "/webhook.html",
       "has": [
         { "type": "host", "value": "webhook.vzexi.lol" }
       ],
-      "dest": "/webhook/webhook.html"  // Serve webhook.html for direct access to /webhook.html
+      "dest": "/webhook/webhook.html"  // Route /webhook.html to webhook.html
     },
     {
       "src": "/(.*)",
       "has": [
         { "type": "host", "value": "webhook.vzexi.lol" }
       ],
-      "status": 404  // Return 404 for any other path on the webhook subdomain
+      "status": 404  // Return a 404 for any other paths on this subdomain
     }
   ]
 }
