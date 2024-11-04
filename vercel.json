@@ -1,0 +1,14 @@
+{
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/webhook/$1",
+      "has": [
+        {
+          "type": "host",
+          "value": "webhook.vzexi.lol"
+        }
+      ]
+    }
+  ]
+}
