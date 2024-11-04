@@ -89,6 +89,7 @@
     </style>
 </head>
 <body>
+    <body oncontextmenu="return false">
     <!-- Swinging background image -->
     <img src="IMG_8754.png" alt="Swinging Background" class="swinging-image"> <!-- Updated image file name -->
 
@@ -123,6 +124,23 @@
             document.getElementById('background-music').play();
             document.getElementById('overlay').classList.add('hidden'); // Hide overlay after clicking
         });
+        document.onkeydown = (e) => {
+    if (e.key == 123) {
+        e.preventDefault();
+    }
+    if (e.ctrlKey && e.shiftKey && e.key == 'I') {
+        e.preventDefault();
+    }
+    if (e.ctrlKey && e.shiftKey && e.key == 'C') {
+        e.preventDefault();
+    }
+    if (e.ctrlKey && e.shiftKey && e.key == 'J') {
+        e.preventDefault();
+    }
+    if (e.ctrlKey && e.key == 'U') {
+        e.preventDefault();
+    }
+};
     </script>
 </body>
 </html>
