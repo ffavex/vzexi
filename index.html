@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <link rel="icon" type="image/ico" href="media/STOP.ico">
     <meta charset="UTF-8">
@@ -7,13 +7,40 @@
     <title>Vzexi</title>
     <link rel="stylesheet" href="css/styles.css">
     <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: black; /* Fallback background color */
+        }
+        
+        /* Fullscreen image that swings */
+        .swinging-image {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            animation: swing 6s ease-in-out infinite alternate; /* Adjust speed as needed */
+        }
+
+        /* Keyframes for swinging effect */
+        @keyframes swing {
+            0% { transform: translateX(-2%) rotate(-2deg); }
+            100% { transform: translateX(2%) rotate(2deg); }
+        }
+
+        /* Overlay content */
         .overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 1);
+            background-color: rgba(0, 0, 0, 0.5); /* Adjust transparency */
             color: white;
             display: flex;
             align-items: center;
@@ -22,67 +49,26 @@
             font-size: 24px;
             text-align: center;
         }
+
         .hidden {
             display: none;
-        }
-        .rectangle {
-            background-color: rgba(13, 13, 13, 0.4);
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-            padding: 20px;
-            margin: 20px;
-        }
-        .outline {
-            display: inline-block;
-            border: 3px solid #000;
-            border-radius: 50%;
-            padding: -2px;
-        }
-        .avatar {
-            border-radius: 50%;
-            display: block;
         }
     </style>
 </head>
 <body>
+    <!-- Swinging background image -->
+    <img src="media/background.jpg" alt="Swinging Background" class="swinging-image"> <!-- Path to your image -->
+
     <div class="overlay" id="overlay">
         Press anywhere to start
     </div>
+
     <audio id="background-music" src="vzexi.mp3" loop></audio>
-    <div class="container hidden">
-        <div class="background-video">
-            <video id="background-video" loop muted>
-                <source src="media/video1.mp4" type="video/mp4">
-            </video>
-        </div>
-        <div class="content-wrapper">
-            <div class="left-content">
-                <div class="rectangle">
-                    <div class="content">
-                        <a href='' target='_blank' class="outline">
-                            <img class='avatar' src="media/pfp.gif" alt='Avatar'>
-                        </a>
-                        <h1 class="nickname">Vzexi</h1>
-                        <img src='icons/Discord.svg' class='discord' alt="Discord">
-                        <div class="social-links social-links-rectangle">
-                            <a href="https://github.com/ffavex" target="_blank">
-                                <img src="icons/github.svg" alt="Github">
-                            </a>
-                            <a href='' target='_blank'>
-                                <img src="icons/spotify.svg" alt="Spotify">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
     <script>
         document.getElementById('overlay').addEventListener('click', function() {
             document.getElementById('background-music').play();
-            document.getElementById('background-video').play();
             document.getElementById('overlay').classList.add('hidden');
-            document.querySelector('.container').classList.remove('hidden');
         });
     </script>
 </body>
