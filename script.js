@@ -4,14 +4,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Default status texts
   const statusTexts = {
-    termed: "Account Termed",
+    termed: "Account Termed, Check back later for updates.",
     new: "New Account: @assetseized",
     limited: "Account Limited",
   }
 
   // Mock config object (replace with actual config loading)
   const config = {
-    accountStatus: "limited", // Default status
+    accountStatus: "termed", // Default status
     customStatusText: null, // Optional custom text
   }
 
