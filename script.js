@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Mock config object (replace with actual config loading)
   const config = {
-    accountStatus: "new", // Default status
+    accountStatus: "limited", // Default status
     customStatusText: null, // Optional custom text
   }
 
