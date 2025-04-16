@@ -3,107 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="vzexi on top">
-    <meta property="og:description" content="ur a loser">
-    <meta name="theme-color" content="#fd2323">
-    <title>vzexi on top</title>
+    <title>vzexi</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="rain-container"></div>
-    
-    <div id="enter-overlay">
-        <div class="overlay-content">
-            <h2>Click to Enter</h2>
-        </div>
-    </div>
-    
-    <audio id="background-music" loop>
-        <source src="audio.mp3" type="audio/mp3">
-    </audio>
-    
-    <div id="main-content" class="container">
+    <main class="container">
         <h1 class="title">vzexi</h1>
-        <div class="badge-container">
-            <div class="badge">
-                <img src="https://img.icons8.com/ios-filled/50/crown.png" alt="Owner" class="badge-icon">
-                <span class="badge-tooltip">Owner</span>
-            </div>
-            <div class="badge">
-                <img src="https://cdn.discordapp.com/emojis/1353299758399230054.webp?size=96&animated=true" alt="vzexi" class="badge-icon">
-                <span class="badge-tooltip">vzexi</span>
-            </div>
+        <div class="status-container">
+            <div id="status-dot" class="status-dot"></div>
+            <p id="status-text" class="status-text">Loading...</p>
         </div>
-        <p class="description"><span id="typewriter"></span><span class="cursor">|</span></p>
-        <div class="socials">
-            <a href="https://github.com/csharpskid" class="social-link"><img src="https://img.icons8.com/ios-filled/50/github.png" alt="GitHub"></a>
-            <a href="https://instagram.com/ffavzexi" class="social-link"><img src="https://img.icons8.com/ios-filled/50/instagram.png" alt="Instagram"></a>
-            <a href="https://tiktok.com/@vzexi" class="social-link"><img src="https://img.icons8.com/ios-filled/50/tiktok.png" alt="Tiktok"></a>
-        </div>
-    </div>
-
-    <script>
-        const rainContainer = document.querySelector('.rain-container');
-        const rainCount = 200;
-        
-        for (let i = 0; i < rainCount; i++) {
-            const drop = document.createElement('div');
-            drop.classList.add('raindrop');
-            drop.style.left = `${Math.random() * 100}%`;
-            drop.style.animationDuration = `${Math.random() * 1 + 0.5}s`;
-            drop.style.animationDelay = `${Math.random() * 2}s`;
-            rainContainer.appendChild(drop);
-        }
-        
-        document.getElementById('enter-overlay').addEventListener('click', function() {
-            this.style.display = 'none';
-            document.getElementById('main-content').style.display = 'block';
-            document.getElementById('background-music').play();
-            startTypewriter();
-        });
-
-        const phrases = [
-            "own @ data",
-            "own @ vast creations",
-            "RIP sore.rest (70k)",
-            "vzexi on top"
-        ];
-        
-        let phraseIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        let typewriterElement;
-        
-        function startTypewriter() {
-            typewriterElement = document.getElementById('typewriter');
-            typeWriter();
-        }
-        
-        function typeWriter() {
-            const currentPhrase = phrases[phraseIndex];
-            
-            if (isDeleting) {
-                typewriterElement.textContent = currentPhrase.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typewriterElement.textContent = currentPhrase.substring(0, charIndex + 1);
-                charIndex++;
-            }
-            
-            let typingSpeed = isDeleting ? 50 : 100;
-            
-            if (!isDeleting && charIndex === currentPhrase.length) {
-                isDeleting = true;
-                typingSpeed = 1000;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-                typingSpeed = 500;
-            }
-            
-            setTimeout(typeWriter, typingSpeed);
-        }
-    </script>
+    </main>
+    
+    <script src="config.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
-<!-- Made by vzexi (iwp.) -->
